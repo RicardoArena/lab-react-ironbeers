@@ -1,19 +1,42 @@
-import BeersImg from "../../assets/beers.png";
+import { Header } from "../Header";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function Beers() {
+  const [beers, setBeers] = useState([]);
+
+  useEffect(() => {
+    async function fetchBeers() {
+      try {
+        const response = await axios.get(
+          "https://ih-beers-api2.herokuapp.com/beers"
+        );
+
+        setBeers(response.data);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchBeers();
+  });
   return (
-    <div>
-      <img src={BeersImg} alt="Beer image" />
-      <h1> All Beers</h1>
-      <h5>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum
-      </h5>
-    </div>
+    <>
+      <Header />
+      {beers.map((beer) => (
+        <>
+          <img class="imgBeer" src={beer.image_url}></img>
+
+          <Link to={`/beers/${beer._id}`}>
+            <h2>{beer.name}</h2>
+          </Link>
+
+          <h3>{beer.tagline}</h3>
+
+          <p>{beer.contributed_by}</p>
+        </>
+      ))}
+    </>
   );
 }

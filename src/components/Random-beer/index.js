@@ -1,11 +1,16 @@
-import RandomBeerimg from "../../assets/random-beer.png";
+import { Header } from "../Header";
+import { Link } from "react-router-dom";
+import RandomBeerImg from "../../assets/random-beer.png";
 
 export function RandomBeer() {
   return (
     <>
+      <Header />
+      <Link to={"/random-beer"}>
+        <img src={RandomBeerImg} alt="Random Beer" />
+      </Link>
       <div>
-        <img src={RandomBeerimg} alt="Random Beer image" />
-        <h1> Random Beer</h1>
+        <h1>Random Beers</h1>
         <h5>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

@@ -1,11 +1,16 @@
-import NewBeerimg from "../../assets/new-beer.png";
+import { Header } from "../Header";
+import { Link } from "react-router-dom";
+import NewBeerImg from "../../assets/new-beer.png";
 
 export function NewBeer() {
   return (
     <>
+      <Header />
+      <Link to={"/new-beer"}>
+        <img src={NewBeerImg} alt="New Beer Img" />
+      </Link>
       <div>
-        <img src={NewBeerimg} alt=" New Beer image" />
-        <h1> New Beer</h1>
+        <h1>All Beers</h1>
         <h5>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
